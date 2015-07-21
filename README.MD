@@ -17,7 +17,7 @@ m = menu({
 m.launch()
 print('_______')
 print("vous avez selectione le menu {0} : {1}".format(m.choose, m.get_choosen_text()))
-
+```
 **resultat**
 
 ```
