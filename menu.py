@@ -54,7 +54,7 @@ class menu(object):
 			key = raw_input(text+' : ')
 			try:
 				key = int(key)
-				if key in range(1, len(self.choice)):
+				if key in range(1, len(self.choice) +1):
 					ask = False
 					self.choose = key
 				else:
@@ -66,4 +66,17 @@ class menu(object):
 				print(err)
 
 		return self.choose
+
+	def get_choosen_text(self):
+		"""
+		:rtype: str
+		:return: le texte choisi
+		
+		si ``self.choose`` est inferieur à **0** alors on retourn une chaine vide ''
+		"""
+
+		if self.choose > -1:
+			return self.choice[self.choose]
+		else:
+			return ''
 
