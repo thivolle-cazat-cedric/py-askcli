@@ -32,12 +32,13 @@ class menu(object):
 		'''
 
 		if isinstance(choice, dict):
-			if case:
-				self._choice = choice
-			else:
 				self._choice = dict()
 				for key in choice:
-					self._choice[key.lower()] = choice[key]
+					if case:
+						self._choice[str(key).lower()] = choice[key]
+					else:
+						self._choice[str(key)] = choice[key]
+
 
 		if isinstance(choice, list):
 			i = 1
@@ -48,6 +49,7 @@ class menu(object):
 				i += 1
 
 		self.title = title
+		self.case = case
 		self.choose = -1
 
 	def __repr__(self):
@@ -60,14 +62,18 @@ class menu(object):
 			value = '> ' + self.title
 
 		for key in self._choice:
-			value += "\n  {0} - {1}".format(key, self._choice[key])
+			if self.case:
+				value += "\n  {0} - {1}".format(key, self._choice[key])
+			else:
+				value += "\n  {0} - {1}".format(str(key).lower(), self._choice[key])
+
 
 		return value
 
-	def launch(self, text='choix', err=' X - Saisie incorrecte, merci de selectiner une valeur dans le champ'):
+	def launch(self, text='choix', err=' X - Saisie incorrecte, merci de selectionner une valeur dans le champ'):
 		"""
 		:param str text: text à afficher avant la saisie. par Défaut **choix**. Ne pas insérer le ' : ' à la fin.
-		:param str err: text à afficher en cas d'erreur de saisie. Par Défaut **X - Saisie incorrecte, merci de selectiner une valeur dans le champ**.
+		:param str err: text à afficher en cas d'erreur de saisie. Par Défaut **X - Saisie incorrecte, merci de selectionner une valeur dans le champ**.
 
 		permet de lancer le menu avec la saisie à la fin.
 		Des tests sont fait sur la saisie, si la valeur est 
@@ -79,7 +85,8 @@ class menu(object):
 		while ask:
 			key = raw_input('? '+text+' : ')
 
-			if key in self._choice:
+			if (self.case and key in self._choice) or \
+			   (not self.case and str(key).lower() in self._choice):
 				ask = False
 				self.choose = key
 			else:
