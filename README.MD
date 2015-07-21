@@ -2,24 +2,28 @@
 
 Un petit module qui peut vous servir si vous editer un script et qu'il y a des menu à list
 
-```
+```python
 from menu import menu
-m = menu(['choix a','choix b', 'quiter'])
+m = menu({
+	'1' : 'action 1',
+	'2' : 'action 2',
+	'3' : 'action 2',
+	'q' : 'quitter'
+})
 m.launch()
-print("vous avez selectione le menu {0}".format(m.choose))
+print("vous avez selectione le menu {0} : {1}".format(m.choose, m.get_choosen_text()))
 ```
-> 1 - choix a
+
+>   1 - action 1
 >
-> 2 - choix b
+>   q - quitter
 >
-> 3 - quiter
+>   3 - action 2
 >
->  ? choix : 4
+>   2 - action 2
 >
->   X - Saisie incorrecte, merci de selectiner une valeur dans le champ
+> ? choix : q
 >
->  ? choix : 2
->
-> vous avez selectione le menu 2
+> vous avez selectione le menu q : quitter
 
 

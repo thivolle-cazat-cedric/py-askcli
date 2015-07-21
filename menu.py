@@ -1,26 +1,52 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import absolute_import, division, print_function, unicode_literals
+
 class menu(object):
 	'''
 	permet de faire un menu à choix
 	'''
 	title = ''
-	choice = []
+	_choice = {}
 	choose = -1
+	case = False
 
-	def __init__(self, choice, title=''):
+	def __init__(self, choice, title='', case=False):
 		'''
-		:param list choice: liste des choix possible
+		:param dict choice: dictionnaire des choix possible
 		:param str tilte: titre du menu
+		:param bool case: menu sensible à la casse (miniscule/majuscule)
 
 		permet d'initialiser les attribut de l'objet.
 
 		 * **choose** Liste des choix possible
 		 * **choice** Choix effectuer. par défaut -1. est automatiquement seter quand on appel la méthode launch()
 		 * **title**  Titre du menu *optionnel*
+
+		exemple de choice : 
+		 {
+		 	'1' : menu A,
+		 	'2' : menu B,
+		 	'Q' : Exit
+		 }
 		'''
 
-		self.choice = choice
+		if isinstance(choice, dict):
+			if case:
+				self._choice = choice
+			else:
+				self._choice = dict()
+				for key in choice:
+					self._choice[key.lower()] = choice[key]
+
+		if isinstance(choice, list):
+			i = 1
+			self._choice = dict()
+			for txt in choice:
+				print(txt)
+				self._choice[i.__str__().lower()] = txt
+				i += 1
+
 		self.title = title
 		self.choose = -1
 
@@ -28,15 +54,14 @@ class menu(object):
 		return "<menu {0} choice>".format(len(self.choice))
 
 	def __str__(self):
-		i = 1
 		if len(self.title) == 0:
 			value = ''
 		else:
-			value = self.title
+			value = '> ' + self.title
 
-		for txt in self.choice:
-			value += "\n  {0} - {1}".format(i, txt)
-			i += 1
+		for key in self._choice:
+			value += "\n  {0} - {1}".format(key, self._choice[key])
+
 		return value
 
 	def launch(self, text='choix', err=' X - Saisie incorrecte, merci de selectiner une valeur dans le champ'):
@@ -47,25 +72,21 @@ class menu(object):
 		permet de lancer le menu avec la saisie à la fin.
 		Des tests sont fait sur la saisie, si la valeur est 
 		"""
+
 		print(self.__str__())
 
 		ask = True
 		while ask:
-			key = raw_input(text+' : ')
-			try:
-				key = int(key)
-				if key in range(1, len(self.choice) +1):
-					ask = False
-					self.choose = key
-				else:
-					ask = True
+			key = raw_input('? '+text+' : ')
 
-			except Exception:
+			if key in self._choice:
+				ask = False
+				self.choose = key
+			else:
 				ask = True
+
 			if ask:
 				print(err)
-
-		return self.choose
 
 	def get_choosen_text(self):
 		"""
@@ -76,7 +97,7 @@ class menu(object):
 		"""
 
 		if self.choose > -1:
-			return self.choice[self.choose]
+			return self._choice[self.choose]
 		else:
 			return ''
 
