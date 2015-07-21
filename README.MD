@@ -7,8 +7,8 @@ Un petit module qui peut vous servir si vous editer un script et qu'il y a des m
 ## exemple
 
 ```python
-from menu import menu
-m = menu({
+from askcli.menu import Menu
+m = Menu({
 	'1' : 'action 1',
 	'2' : 'action 2',
 	'3' : 'action 2',

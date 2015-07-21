@@ -2,7 +2,7 @@
 
 from __future__ import absolute_import, division, print_function, unicode_literals
 
-class menu(object):
+class Menu(object):
 	'''
 	permet de faire un menu à choix
 	'''
