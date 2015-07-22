@@ -11,7 +11,7 @@ Un petit module qui peut vous servir si vous editer un script et qu'il y a des m
 ## Exemple simple liste numérique
 
 ```python
-from askcli.menu import Menu
+from askcli import Menu
 # Création du menu
 m = Menu(['action 1','action 2', 'action 3'])
 
@@ -38,7 +38,7 @@ vous avez selectione le menu 3 : action 3
 ## Exemple liste alpha/numérique
 
 ```python
-from askcli.menu import Menu, Item
+from askcli import Menu, Item
 items = list()
 
 # creation des items (choix)
