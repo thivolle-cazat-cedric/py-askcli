@@ -9,26 +9,44 @@ class Item(object):
     activate = False
 
     def __init__(self, key, txt, activate=False):
-        
+        """
+        :param str key: clef de l'item.
+        :param str txt: text de l'item
+        """
         self.key = str(key)
         self.txt = str(txt)
         self.activate = bool(activate)
 
     def __repr__(self):
+        """
+        :rtype: str
+        :return: representation de l'objet
+        """
         return "<menu.Item : {0} - {1}>".format(self.key, self.txt)
 
     def __str__(self):
-        ret = "{0} - {1}".format(self.key, self.txt)
+        """
+        :rtype: str
+        :return: représentaion to string de l'objet
+        """
 
+        ret = "{0} - {1}".format(self.key, self.txt)
         if (self.activate):
             return ">{0}".format(ret)
         else:
             return " {0}".format(ret)
 
     def __eq__(self, other):
+        """
+        :param all other: objet à tester
+
+        :return: si les objet sont égale. c'est à dire que les key sont égale
+        :rtype: bool
+        """
+
 
         try:
-            return (self.key == other.key)
+            return (str(self.key) == str(other.key))
         except Exception:
             return False
 
@@ -45,9 +63,11 @@ class Menu(object):
 
     def __init__(self, choice, title='', case=False):
         '''
-        :param Item[] choice: dictinaire d'menu.Item des choix possible. acceptable une liste de str
+        :param Item[] choice: liste de ``menu.Item`` des choix possible. acceptable une liste de str
         :param str tilte: titre du menu
         :param bool case: menu sensible à la casse (miniscule/majuscule)
+
+        :raise ValueError: si choice n'est pas une liste. Si un element dans la liste n'est pas de type Item ou Str
 
         permet d'initialiser les attribut de l'objet.
 
@@ -71,6 +91,8 @@ class Menu(object):
                     ValueError('the index {0} in list is [{1}]. This type are not suported'.format(loop-1, type(i).__name__))
 
                 loop += 1
+        else:
+            ValueError('The first argument [choice] must be list type. {0} are not suported'.format(type(choice).__name__))
 
         self.title = title
         self.case = case
@@ -86,7 +108,7 @@ class Menu(object):
             value = '> ' + self.title
 
         for item in self._choice:
-            value += "\n   {0}".format(item)
+            value += "\n  {0}".format(item)
 
         return value
 
@@ -128,6 +150,15 @@ class Menu(object):
             return ''
 
     def key_is_ok(self, key):
+        '''
+        :param str key: clef à tester
+
+        :return: si la clef est présente dans la liste de choix
+        :rtype: bool
+
+        permet de tester si le cled ``key`` est présent dans la liste de choix.
+        prise en compte de la case si ``self.case = True``
+        '''
 
         key = str(key)
 
@@ -154,7 +185,12 @@ class Menu(object):
         return is_ok
 
     def set_choice(self, choose):
-        
+        """
+        :param str choose: choix que l'on souhaite affecter à cette liste.
+
+        :raise ValueError: si la clef ``choose`` n'est pas présent dans la list
+        """
+
         choose = str(choose)
         if self.key_is_ok(choose):
             self.choose = choose
