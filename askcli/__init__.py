@@ -3,6 +3,7 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 from askcli.menu import Menu
 from askcli.item import Item
+from askcli.ask_bool import AskBool
 """
     askcli
     ------
@@ -23,3 +24,4 @@ __status__ = "dev"
 
 Item = Item
 Menu = Menu
+AskBool = AskBool

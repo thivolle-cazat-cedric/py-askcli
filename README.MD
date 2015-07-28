@@ -19,8 +19,7 @@ m = Menu(['action 1','action 2', 'action 3'])
 m.launch()
 
 print('_______')
-print("vous avez selectione le menu {0} : {1}".format(m.choose, m.get_choosen_text()))
-```
+print("vous avez selectione le menu {0} : {1}".format(m.choose, m.get_choosen_text())) ```
 
 **resultat**
 
@@ -71,10 +70,28 @@ vous avez selectione le menu q : Quitter
 
 ```
 
+## Exemple Yes/No
+
+```
+from askcli.ask_bool import AskBool
+a = AskBool('Are you agree')
+a.launch()
+```
+
+```
+ ? Are you agree [y/n] : 
+ x error key
+ ? Are you agree [y/n] : q
+ x error key
+ ? Are you agree [y/n] : Y
+True
+```
+
+
 ===
 
 ## TODO liste
 - [X] Ordonner la liste 
-- [ ] Module de Yes/no
+- [X] Module de Yes/no
 - [ ] Test
 - [ ] DOC
