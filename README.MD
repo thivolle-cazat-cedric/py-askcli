@@ -20,6 +20,7 @@ m.launch()
 
 print('_______')
 print("vous avez selectione le menu {0} : {1}".format(m.choose, m.get_choosen_text())) ```
+```
 
 **resultat**
 
@@ -77,6 +78,8 @@ from askcli.ask_bool import AskBool
 a = AskBool('Are you agree')
 a.launch()
 ```
+
+**resultat**
 
 ```
  ? Are you agree [y/n] : 
