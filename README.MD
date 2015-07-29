@@ -73,7 +73,7 @@ vous avez selectione le menu q : Quitter
 
 ## Exemple Yes/No
 
-```
+```python
 from askcli.ask_bool import AskBool
 a = AskBool('Are you agree')
 a.launch()
