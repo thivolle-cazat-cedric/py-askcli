@@ -6,7 +6,9 @@ Un petit module qui peut vous servir si vous editer un script et qu'il y a des m
  2. action 2
  3. [...]
 
-===
+[Documentation](http://askcli.thivolle-cazat.fr/fr/)
+
+---
 
 ## Exemple simple liste numérique
 
