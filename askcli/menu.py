@@ -8,7 +8,7 @@ class Menu(object):
     '''
     title = ''
     _choice = list()
-    choose = -1
+    choose = None
     _choose_index = -1
     case = False
 
@@ -63,7 +63,7 @@ class Menu(object):
 
         return value
 
-    def launch(self, text='choix', err=' X - Saisie incorrecte, merci de selectionner une valeur dans le champ'):
+    def launch(self, text='input', err='error key, (unavailable)'):
         """
         :param str text: text à afficher avant la saisie. par Défaut **choix**. Ne pas insérer le ' : ' à la fin.
         :param str err: text à afficher en cas d'erreur de saisie. Par Défaut **X - Saisie incorrecte, merci de selectionner une valeur dans le champ**.
@@ -76,16 +76,16 @@ class Menu(object):
 
         ask = True
         while ask:
-            key = raw_input('? '+text+' : ')
+            key = raw_input('? {0} : '.format(text))
 
             if self.key_is_ok(key):
                 ask = False
-                self.set_choice(key)
+                self._set_choice(key)
             else:
                 ask = True
 
             if ask:
-                print(err)
+                print(' X - {0}'.format(err))
 
     def get_choosen_text(self):
         """
@@ -135,7 +135,7 @@ class Menu(object):
 
         return is_ok
 
-    def set_choice(self, choose):
+    def _set_choice(self, choose):
         """
         :param str choose: choix que l'on souhaite affecter à cette liste.
 
