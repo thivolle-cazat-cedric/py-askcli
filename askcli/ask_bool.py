@@ -9,7 +9,7 @@ class AskBool(object):
     t_key = ''
     f_key = ''
     required = True
-    default = ''
+    default = False
     choosen = None
 
     def __init__(self, desc, t_text='Yes', f_text='No', t_key=None, f_key=None, required=True, default=False):
@@ -80,7 +80,7 @@ class AskBool(object):
 
         try:
             key = str(key).lower()
-        except Exception, e:
+        except Exception as e:
             return False
         
         valid = self._get_valid_array() + self._get_invalid_array()
@@ -98,13 +98,11 @@ class AskBool(object):
         if self.key_is_valid(key):
             if key in self._get_valid_array():
                 self.choosen =  True
-            elif key in self._get_invalid_array():
-                self.choosen =  False
             else:
-                raise Exception
+                self.choosen =  False
 
         else:
-            raise Exception
+            raise ValueError("askcli.AskBool : error key [{0}]. Is not valide ".format(key))
 
     def get_resp(self):
         """
@@ -119,7 +117,20 @@ class AskBool(object):
 
         if isinstance(self.choosen, bool):
             return self.choosen
+
+    def get_text(self):
+        """
+        :return: Le texte en fonction du choi
+        :rtype: str
+        """
         
+        try:
+            if self.get_resp():
+                return self.t_text
+            else:
+                return self.f_text
+        except Exception as e:
+            return ''
 
     def launch(self, show_text_key=False, err_mess="error key"):
         '''
@@ -130,12 +141,11 @@ class AskBool(object):
         '''
 
         if show_text_key:
-            print("   2 answer Possible : ")
-            print("   [{0}] {1} ").format(self.t_key, self.t_text)
-            print("   [{0}] {1} ").format(self.f_key, self.f_text)
+            print("   [{0}] {1} ".format(self.t_key, self.t_text))
+            print("   [{0}] {1} ".format(self.f_key, self.f_text))
         
         if not self.required and show_text_key:
-            def_explain = "    Default : [{0}]"
+            def_explain = "   Default : [{0}]"
             if self.default:
                 print(def_explain.format(self.t_key))
             else:
