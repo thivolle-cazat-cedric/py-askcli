@@ -1,4 +1,4 @@
-# py-askcli 0.2.0-b
+# py-askcli 0.3.0-b
 
 Un petit module qui peut vous servir si vous editer un script et qu'il y a des menu du type : 
 
@@ -78,6 +78,12 @@ vous avez selectione le menu q : Quitter
 ```python
 from askcli.ask_bool import AskBool
 a = AskBool('Are you agree')
+a.launch()
+
+# ou 
+from askcli.ask_bool import AskBool
+from askcli.item import YES, NO
+a = AskBool('Are you agree', YES, NO)
 a.launch()
 ```
 

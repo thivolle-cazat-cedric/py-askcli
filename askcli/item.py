@@ -48,3 +48,14 @@ class Item(object):
             return (str(self.key) == str(other.key))
         except Exception:
             return False
+
+
+# english
+ 
+YES = Item('Y', 'Yes')
+NO = Item('N', 'No')
+
+# french
+
+OUI = Item('O', 'Oui')
+NON = Item('N', 'Non')
