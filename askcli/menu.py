@@ -36,21 +36,22 @@ class Menu(object):
 
                 if type(i).__name__ == 'Item':
                     self._choice.append(i)
-                elif isinstance(i, str):
+                elif isinstance(i, ''.__class__):
+                    i = str(i)
                     self._choice.append(Item(loop, i))
                 else:
-                    ValueError('the index {0} in list is [{1}]. This type are not suported'.format(loop-1, type(i).__name__))
+                    raise ValueError('the index {0} in list is [{1}]. This type are not suported'.format(loop-1, type(i).__name__))
 
                 loop += 1
         else:
-            ValueError('The first argument [choice] must be list type. {0} are not suported'.format(type(choice).__name__))
+            raise ValueError('The first argument [choice] must be list type. {0} are not suported'.format(type(choice).__name__))
 
-        self.title = title
-        self.case = case
+        self.title = str(title)
+        self.case = bool(case)
         self.choose = -1
 
     def __repr__(self):
-        return "<menu {0} choice>".format(len(self.choice))
+        return "<askcli.menu {0} choice>".format(len(self._choice))
 
     def __str__(self):
         if len(self.title) == 0:
@@ -76,7 +77,7 @@ class Menu(object):
 
         ask = True
         while ask:
-            key = raw_input('? {0} : '.format(text))
+            key = input('? {0} : '.format(text))
 
             if self.key_is_ok(key):
                 ask = False
@@ -95,7 +96,7 @@ class Menu(object):
         si ``self.choose`` est inferieur à **0** alors on retourn une chaine vide ''
         """
 
-        if self.choose > -1:
+        if self._choose_index > -1:
             return self._choice[self._choose_index].txt
         else:
             return ''
@@ -110,8 +111,10 @@ class Menu(object):
         permet de tester si le cled ``key`` est présent dans la liste de choix.
         prise en compte de la case si ``self.case = True``
         '''
-
-        key = str(key)
+        try:
+            key = str(key)
+        except Exception:
+            return False
 
         index = 0
         loop = True
@@ -131,9 +134,8 @@ class Menu(object):
                 is_ok = False
                 index += 1
 
-
-
         return is_ok
+
 
     def _set_choice(self, choose):
         """
@@ -146,6 +148,6 @@ class Menu(object):
         if self.key_is_ok(choose):
             self.choose = choose
         else:
+            self._choose_index = -1
             raise ValueError("the key {0} are not in choice list".format(choose))
-
 

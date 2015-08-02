@@ -45,7 +45,7 @@ class Item(object):
 
 
         try:
-            return (str(self.key) == str(other.key))
+            return (str(self.key).lower() == str(other.key).lower())
         except Exception:
             return False
 
