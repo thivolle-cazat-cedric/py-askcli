@@ -3,3 +3,4 @@
 .coverage
 coverage_html/
 env/
+.pypirc
