@@ -1,4 +1,4 @@
 *.pyc
 *.DS_Store
 .coverage
-coverage_html/*
+coverage_html/*env/
