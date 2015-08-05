@@ -20,7 +20,7 @@ exclude_lines =
     if 0:
     if __name__ == .__main__.:
 
-ignore_errors = True
+ignore_errors = False
 
 [html]
-directory = ../coverage_html
+directory = ./coverage_html

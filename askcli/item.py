@@ -21,7 +21,7 @@ class Item(object):
         :rtype: str
         :return: representation de l'objet
         """
-        return "<menu.Item : {0} - {1}>".format(self.key, self.txt)
+        return "<askcli.Item : {0} - {1}>".format(self.key, self.txt)
 
     def __str__(self):
         """
@@ -45,7 +45,7 @@ class Item(object):
 
 
         try:
-            return (str(self.key).lower() == str(other.key).lower())
+            return (str(self.key) == str(other.key))
         except Exception:
             return False
 

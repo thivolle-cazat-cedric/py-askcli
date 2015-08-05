@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, division, print_function, unicode_literals
 import unittest
-# from unittest.mock import patch
 from askcli import Menu, Item
 from mock import patch
 
@@ -119,10 +118,10 @@ class TestMenu(unittest.TestCase):
         self.valid_menu._set_choice('3')
         self.assertEqual(self.valid_menu.get_choosen_text(), 'tata')
 
-    # @patch('askcli.Menu.launch', return_value='ok')
-    # def test_launch(self, input):
-    #     m = Menu(['yes','no'])
-    #     self.assertEqual(m.launch(), 'ok')
+    @patch('askcli.Menu.launch', return_value='ok')
+    def test_launch(self, input):
+        m = Menu(['yes','no'])
+        self.assertEqual(m.launch(), 'ok')
 
 
 if __name__ == '__main__':

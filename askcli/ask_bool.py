@@ -63,7 +63,7 @@ class AskBool(object):
         :return: représentaion to string de l'objet
         """
 
-        ret = "{0}  [{1}/{2}]>".format(self.desc, self.valid.key, self.invalid.key)
+        return "{0}  [{1}/{2}] : ".format(self.desc, self.valid.key, self.invalid.key)
 
     def _get_valid_array(self):
         """
@@ -128,6 +128,8 @@ class AskBool(object):
 
         if isinstance(self.choosen, bool):
             return self.choosen
+        else:
+            raise Exception("askcli.AskBool : Unexpected value for self.choosen")
 
     def get_text(self):
         """
