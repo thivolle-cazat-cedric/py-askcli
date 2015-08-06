@@ -33,7 +33,7 @@ cd your_lib_project
 git clone https://github.com/thivolle-cazat-cedric/py-askcli.git
 cd py-askcli
 python setup.py install
-``
+```
 
 
 ### 2. Simulation d'installation dans l'environement *(pip)*
