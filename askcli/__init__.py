@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import, division, print_function, unicode_literals
 from askcli.menu import Menu
 from askcli.item import Item
 from askcli.ask_bool import AskBool
@@ -17,10 +16,15 @@ from askcli.ask_bool import AskBool
     ? enter your choice : 
 """
 
-__author__ = "THIVOLLE-CAZAT cédric"
-__version__ = '0.3.0-b'
-__maintainer__ = "THIVOLLE-CAZAT cédric"
-__status__ = "dev"
+__name__ = "askcli"
+__description__ = "Generate interactive menus in a python script. Like yes/no question and menu action."
+__author__ = "THIVOLLE-CAZAT cedric"
+__copyright__ = "Copyright 20015, THIVOLLE-CAZAT py-askcli project"
+__version__ = '1.0.4'
+__maintainer__ = "THIVOLLE-CAZAT cedric"
+__status__ = "stable"
+__contact__ = ""
+__url__ = "https://github.com/thivolle-cazat-cedric/py-askcli/tree/1.0.0/askcli"
 
 Item = Item
 Menu = Menu

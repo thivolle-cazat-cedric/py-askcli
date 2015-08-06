@@ -4,3 +4,9 @@
 coverage_html/
 env/
 .pypirc
+MANIFEST
+_main_.egg-info/
+askcli.egg-info/
+build/
+dist/
+ez_setup.py
