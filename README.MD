@@ -1,4 +1,4 @@
-# py-askcli 0.3.0-b
+# py-askcli 1.0.3
 
 Un petit module qui peut vous servir si vous editer un script et qu'il y a des menu du type : 
 
@@ -9,6 +9,23 @@ Un petit module qui peut vous servir si vous editer un script et qu'il y a des m
 [Documentation](http://askcli.thivolle-cazat.fr/fr/)
 
 ---
+
+## Instalation 
+
+###### virtualenv
+```bash
+pip install askcli
+```
+###### cloning project
+```bash
+source env_dir/bin/activate
+cd your_lib_project
+git clone https://github.com/thivolle-cazat-cedric/py-askcli.git
+cd py-askcli
+python setup.py install
+``
+
+
 
 ## Exemple simple liste numérique
 

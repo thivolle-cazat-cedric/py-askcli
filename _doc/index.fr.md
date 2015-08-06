@@ -22,26 +22,18 @@ Un module python qui vous permet de générer des menus interactifs avec un util
 
 # Installation
 
-Pour le moment il n'y à encors aucune version pip mise à disposition sur [pipy](https://pypi.python.org/pypi/), car le projet est encore en développement, il sera proposé une fois les tests unitaire términé *(prochaine étape après la documentation)*.
-
-En attendant si vous souhaitez l'utilisé 2 possibilité : 
-
-### 1. Clonnage du projet
-
+**virtualenv**
 ```bash
-#!/bin/bash
-
-cd <your_project_dir/res_dir>
+pip install askcli
+```
+**cloning project**
+```bash
+source env_dir/bin/activate
+cd your_lib_project
 git clone https://github.com/thivolle-cazat-cedric/py-askcli.git
-# vous devez ajouter un [__init__.py] sur tous les dossiers pour acceder au dossier py-askcli depuis la racine de votre projet python
-touch py-askcli/__init__.py
-```
-
-```python
-from <your_project_dir>.<res_dir>.py-askcli.askcli import Menu
-
-[...]
-```
+cd py-askcli
+python setup.py install
+``
 
 
 ### 2. Simulation d'installation dans l'environement *(pip)*
